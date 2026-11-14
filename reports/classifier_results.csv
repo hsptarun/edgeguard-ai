@@ -1,0 +1,107 @@
+scenario_id,scenario,origin,expected_suspicious,predicted_suspicious,expected_alerts,actual_alerts,alert_count_match,expected_rules,actual_rules
+H01,Lobby person 10:00,hand_written,False,False,0,0,True,,
+H02,Office door open 14:30,hand_written,False,False,0,0,True,,
+H03,Server Room person 10:15 (permitted),hand_written,False,False,0,0,True,,
+H04,"Server Room door 09:00 (window start, inclusive)",hand_written,False,False,0,0,True,,
+H05,"Server Room door 17:00 (window end, inclusive)",hand_written,False,False,0,0,True,,
+H06,Laboratory motion 18:30 (building open),hand_written,False,False,0,0,True,,
+H07,Lobby person 23:00 (unrestricted room),hand_written,False,False,0,0,True,,
+H08,Storage occupancy 12:00,hand_written,False,False,0,0,True,,
+H09,Server Room motion 12:00 (building open),hand_written,False,False,0,0,True,,
+H10,Office motion 02:00 (unrestricted; rules do not cover it),hand_written,False,False,0,0,True,,
+H11,Server Room door_close 03:00 (closing is not an intrusion rule),hand_written,False,False,0,0,True,,
+H12,Server Room occupancy 03:00 (type not covered by rules),hand_written,False,False,0,0,True,,
+H13,"Lobby loitering 11:00 (unrestricted room, R5 does not apply)",hand_written,False,False,0,0,True,,
+S01,Server Room person 03:00,hand_written,True,True,1,1,True,R1,R1
+S02,Server Room door open 22:30,hand_written,True,True,1,1,True,R2,R2
+S03,Server Room motion 01:00 (building closed),hand_written,True,True,1,1,True,R3,R3
+S04,Storage door 17:01 (one minute after window),hand_written,True,True,1,1,True,R2,R2
+S05,Server Room door 08:59 (one minute before window),hand_written,True,True,1,1,True,R2,R2
+S06,"Laboratory person 19:01 (after lab hours, building open)",hand_written,True,True,1,1,True,R1,R1
+S07,Laboratory person 21:00,hand_written,True,True,1,1,True,R1,R1
+S08,Storage motion 21:00 (building closed),hand_written,True,True,1,1,True,R3,R3
+S09,Burst: three restricted rooms within 60 s,hand_written,True,True,4,4,True,"R2,R1,R3,R4","R2,R1,R3,R4"
+S10,"Duplicate suppression: 5 person detections in 40 s, same room",hand_written,True,True,1,1,True,R1,R1
+S11,Cooldown expiry: two detections 90 s apart,hand_written,True,True,2,2,True,"R1,R1","R1,R1"
+S12,Server Room loitering 11:00 (PERMITTED hours - R5 still fires),hand_written,True,True,1,1,True,R5,R5
+S13,Laboratory loitering 23:00 (also after hours),hand_written,True,True,1,1,True,R5,R5
+G-door_after_hours-09,door_after_hours,generated,True,True,1,1,True,,R2
+G-multiple_suspicious-03,multiple_suspicious,generated,True,True,4,4,True,,"R1,R3,R2,R4"
+G-normal_motion-03,normal_motion,generated,False,False,0,0,True,,
+G-person_restricted_zone-00,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-motion_empty_room-00,motion_empty_room,generated,True,True,1,1,True,,R3
+G-person_restricted_zone-05,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-normal_door_open-08,normal_door_open,generated,False,False,0,0,True,,
+G-door_after_hours-06,door_after_hours,generated,True,True,1,1,True,,R2
+G-person_restricted_zone-07,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-motion_empty_room-09,motion_empty_room,generated,True,True,1,1,True,,R3
+G-normal_occupancy-05,normal_occupancy,generated,False,False,0,0,True,,
+G-loitering_restricted_zone-02,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-person_restricted_zone-09,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-motion_empty_room-08,motion_empty_room,generated,True,True,1,1,True,,R3
+G-door_after_hours-02,door_after_hours,generated,True,True,1,1,True,,R2
+G-multiple_suspicious-02,multiple_suspicious,generated,True,True,4,4,True,,"R1,R3,R2,R4"
+G-normal_motion-05,normal_motion,generated,False,False,0,0,True,,
+G-person_restricted_zone-06,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-loitering_restricted_zone-06,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-normal_door_open-01,normal_door_open,generated,False,False,0,0,True,,
+G-loitering_restricted_zone-00,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-person_restricted_zone-03,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-normal_occupancy-08,normal_occupancy,generated,False,False,0,0,True,,
+G-multiple_suspicious-07,multiple_suspicious,generated,True,True,4,4,True,,"R3,R3,R3,R4"
+G-normal_occupancy-09,normal_occupancy,generated,False,False,0,0,True,,
+G-normal_motion-00,normal_motion,generated,False,False,0,0,True,,
+G-door_after_hours-03,door_after_hours,generated,True,True,1,1,True,,R2
+G-door_after_hours-07,door_after_hours,generated,True,True,1,1,True,,R2
+G-motion_empty_room-03,motion_empty_room,generated,True,True,1,1,True,,R3
+G-multiple_suspicious-01,multiple_suspicious,generated,True,True,4,4,True,,"R3,R2,R3,R4"
+G-motion_empty_room-02,motion_empty_room,generated,True,True,1,1,True,,R3
+G-normal_door_open-07,normal_door_open,generated,False,False,0,0,True,,
+G-multiple_suspicious-05,multiple_suspicious,generated,True,True,4,4,True,,"R2,R3,R2,R4"
+G-normal_door_open-02,normal_door_open,generated,False,False,0,0,True,,
+G-normal_occupancy-06,normal_occupancy,generated,False,False,0,0,True,,
+G-motion_empty_room-06,motion_empty_room,generated,True,True,1,1,True,,R3
+G-normal_motion-02,normal_motion,generated,False,False,0,0,True,,
+G-door_after_hours-00,door_after_hours,generated,True,True,1,1,True,,R2
+G-normal_motion-04,normal_motion,generated,False,False,0,0,True,,
+G-normal_door_open-05,normal_door_open,generated,False,False,0,0,True,,
+G-normal_door_open-06,normal_door_open,generated,False,False,0,0,True,,
+G-multiple_suspicious-00,multiple_suspicious,generated,True,True,4,4,True,,"R2,R3,R2,R4"
+G-loitering_restricted_zone-03,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-normal_door_open-09,normal_door_open,generated,False,False,0,0,True,,
+G-person_restricted_zone-02,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-normal_motion-01,normal_motion,generated,False,False,0,0,True,,
+G-multiple_suspicious-06,multiple_suspicious,generated,True,True,4,4,True,,"R1,R3,R3,R4"
+G-person_restricted_zone-08,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-normal_occupancy-00,normal_occupancy,generated,False,False,0,0,True,,
+G-door_after_hours-08,door_after_hours,generated,True,True,1,1,True,,R2
+G-normal_door_open-00,normal_door_open,generated,False,False,0,0,True,,
+G-person_restricted_zone-01,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-loitering_restricted_zone-04,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-motion_empty_room-07,motion_empty_room,generated,True,True,1,1,True,,R3
+G-loitering_restricted_zone-05,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-loitering_restricted_zone-09,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-normal_motion-06,normal_motion,generated,False,False,0,0,True,,
+G-motion_empty_room-04,motion_empty_room,generated,True,True,1,1,True,,R3
+G-door_after_hours-04,door_after_hours,generated,True,True,1,1,True,,R2
+G-door_after_hours-01,door_after_hours,generated,True,True,1,1,True,,R2
+G-door_after_hours-05,door_after_hours,generated,True,True,1,1,True,,R2
+G-normal_occupancy-02,normal_occupancy,generated,False,False,0,0,True,,
+G-loitering_restricted_zone-07,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-multiple_suspicious-08,multiple_suspicious,generated,True,True,4,4,True,,"R3,R1,R3,R4"
+G-multiple_suspicious-04,multiple_suspicious,generated,True,True,4,4,True,,"R2,R3,R2,R4"
+G-normal_motion-09,normal_motion,generated,False,False,0,0,True,,
+G-normal_motion-07,normal_motion,generated,False,False,0,0,True,,
+G-loitering_restricted_zone-01,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-loitering_restricted_zone-08,loitering_restricted_zone,generated,True,True,1,1,True,,R5
+G-normal_door_open-04,normal_door_open,generated,False,False,0,0,True,,
+G-person_restricted_zone-04,person_restricted_zone,generated,True,True,1,1,True,,R1
+G-normal_occupancy-01,normal_occupancy,generated,False,False,0,0,True,,
+G-multiple_suspicious-09,multiple_suspicious,generated,True,True,4,4,True,,"R2,R1,R1,R4"
+G-normal_occupancy-03,normal_occupancy,generated,False,False,0,0,True,,
+G-normal_occupancy-07,normal_occupancy,generated,False,False,0,0,True,,
+G-normal_motion-08,normal_motion,generated,False,False,0,0,True,,
+G-motion_empty_room-01,motion_empty_room,generated,True,True,1,1,True,,R3
+G-motion_empty_room-05,motion_empty_room,generated,True,True,1,1,True,,R3
+G-normal_door_open-03,normal_door_open,generated,False,False,0,0,True,,
+G-normal_occupancy-04,normal_occupancy,generated,False,False,0,0,True,,

@@ -1,0 +1,8 @@
+# Version ranges verified on Python 3.12 (see docs/testing.md for the exact tested versions).
+streamlit>=1.40,<2
+pandas>=2.2,<4
+numpy>=1.26,<3
+opencv-python-headless>=4.9,<5
+ultralytics>=8.3,<9
+matplotlib>=3.8,<4
+pytest>=8,<10

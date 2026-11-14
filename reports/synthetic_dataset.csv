@@ -1,0 +1,134 @@
+scenario_id,scenario,origin,event_id,timestamp,room,event_type,expected_suspicious,expected_alerts
+H01,Lobby person 10:00,hand_written,EVT-AF48D92C,2026-03-10T10:00:00,Lobby,person_detected,False,0
+H02,Office door open 14:30,hand_written,EVT-09BF070C,2026-03-10T14:30:00,Office,door_open,False,0
+H03,Server Room person 10:15 (permitted),hand_written,EVT-F4A8B1E6,2026-03-10T10:15:00,Server Room,person_detected,False,0
+H04,"Server Room door 09:00 (window start, inclusive)",hand_written,EVT-80B4EC73,2026-03-10T09:00:00,Server Room,door_open,False,0
+H05,"Server Room door 17:00 (window end, inclusive)",hand_written,EVT-CFCCBA3F,2026-03-10T17:00:00,Server Room,door_open,False,0
+H06,Laboratory motion 18:30 (building open),hand_written,EVT-1711897A,2026-03-10T18:30:00,Laboratory,motion,False,0
+H07,Lobby person 23:00 (unrestricted room),hand_written,EVT-3553C729,2026-03-10T23:00:00,Lobby,person_detected,False,0
+H08,Storage occupancy 12:00,hand_written,EVT-5D13E06F,2026-03-10T12:00:00,Storage Room,occupancy,False,0
+H09,Server Room motion 12:00 (building open),hand_written,EVT-6894F0D2,2026-03-10T12:00:00,Server Room,motion,False,0
+H10,Office motion 02:00 (unrestricted; rules do not cover it),hand_written,EVT-B63E0848,2026-03-10T02:00:00,Office,motion,False,0
+H11,Server Room door_close 03:00 (closing is not an intrusion rule),hand_written,EVT-71184BBC,2026-03-10T03:00:00,Server Room,door_close,False,0
+H12,Server Room occupancy 03:00 (type not covered by rules),hand_written,EVT-312DE5A1,2026-03-10T03:00:00,Server Room,occupancy,False,0
+H13,"Lobby loitering 11:00 (unrestricted room, R5 does not apply)",hand_written,EVT-54C16449,2026-03-10T11:00:00,Lobby,prolonged_presence,False,0
+S01,Server Room person 03:00,hand_written,EVT-568CEF5A,2026-03-10T03:00:00,Server Room,person_detected,True,1
+S02,Server Room door open 22:30,hand_written,EVT-A4F245A6,2026-03-10T22:30:00,Server Room,door_open,True,1
+S03,Server Room motion 01:00 (building closed),hand_written,EVT-D7BB0182,2026-03-10T01:00:00,Server Room,motion,True,1
+S04,Storage door 17:01 (one minute after window),hand_written,EVT-1A744056,2026-03-10T17:01:00,Storage Room,door_open,True,1
+S05,Server Room door 08:59 (one minute before window),hand_written,EVT-D7054805,2026-03-10T08:59:00,Server Room,door_open,True,1
+S06,"Laboratory person 19:01 (after lab hours, building open)",hand_written,EVT-B4861E05,2026-03-10T19:01:00,Laboratory,person_detected,True,1
+S07,Laboratory person 21:00,hand_written,EVT-693779CE,2026-03-10T21:00:00,Laboratory,person_detected,True,1
+S08,Storage motion 21:00 (building closed),hand_written,EVT-85504AFE,2026-03-10T21:00:00,Storage Room,motion,True,1
+S09,Burst: three restricted rooms within 60 s,hand_written,EVT-B1221A7C,2026-03-10T02:00:00,Server Room,door_open,True,4
+S09,Burst: three restricted rooms within 60 s,hand_written,EVT-992BAC76,2026-03-10T02:00:30,Laboratory,person_detected,True,4
+S09,Burst: three restricted rooms within 60 s,hand_written,EVT-6D3A7A2C,2026-03-10T02:01:00,Storage Room,motion,True,4
+S10,"Duplicate suppression: 5 person detections in 40 s, same room",hand_written,EVT-E897283B,2026-03-10T03:00:00,Server Room,person_detected,True,1
+S10,"Duplicate suppression: 5 person detections in 40 s, same room",hand_written,EVT-ED0D46C4,2026-03-10T03:00:10,Server Room,person_detected,True,1
+S10,"Duplicate suppression: 5 person detections in 40 s, same room",hand_written,EVT-9782F45A,2026-03-10T03:00:20,Server Room,person_detected,True,1
+S10,"Duplicate suppression: 5 person detections in 40 s, same room",hand_written,EVT-AB3B573E,2026-03-10T03:00:30,Server Room,person_detected,True,1
+S10,"Duplicate suppression: 5 person detections in 40 s, same room",hand_written,EVT-19A1B1FA,2026-03-10T03:00:40,Server Room,person_detected,True,1
+S11,Cooldown expiry: two detections 90 s apart,hand_written,EVT-949187CE,2026-03-10T03:00:00,Server Room,person_detected,True,2
+S11,Cooldown expiry: two detections 90 s apart,hand_written,EVT-1F9BE4F8,2026-03-10T03:01:30,Server Room,person_detected,True,2
+S12,Server Room loitering 11:00 (PERMITTED hours - R5 still fires),hand_written,EVT-22FF229E,2026-03-10T11:00:00,Server Room,prolonged_presence,True,1
+S13,Laboratory loitering 23:00 (also after hours),hand_written,EVT-6818E56C,2026-03-10T23:00:00,Laboratory,prolonged_presence,True,1
+G-door_after_hours-09,door_after_hours,generated,EVT-BB8EC274,2026-03-19T04:30:46,Storage Room,door_open,True,1
+G-multiple_suspicious-03,multiple_suspicious,generated,EVT-C971298A,2026-03-13T02:15:20,Server Room,person_detected,True,4
+G-multiple_suspicious-03,multiple_suspicious,generated,EVT-2DC4100F,2026-03-13T02:15:50,Storage Room,motion,True,4
+G-multiple_suspicious-03,multiple_suspicious,generated,EVT-2F3280A8,2026-03-13T02:16:20,Laboratory,door_open,True,4
+G-normal_motion-03,normal_motion,generated,EVT-4C4BBEE7,2026-03-13T17:15:06,Office,motion,False,0
+G-person_restricted_zone-00,person_restricted_zone,generated,EVT-1CE91F27,2026-03-10T23:45:10,Server Room,person_detected,True,1
+G-motion_empty_room-00,motion_empty_room,generated,EVT-D8FE0493,2026-03-10T07:45:59,Server Room,motion,True,1
+G-person_restricted_zone-05,person_restricted_zone,generated,EVT-8B10E9D5,2026-03-15T22:30:20,Storage Room,person_detected,True,1
+G-normal_door_open-08,normal_door_open,generated,EVT-F4A21AAF,2026-03-18T10:00:01,Lobby,door_open,False,0
+G-door_after_hours-06,door_after_hours,generated,EVT-3607EEB3,2026-03-16T22:15:41,Storage Room,door_open,True,1
+G-person_restricted_zone-07,person_restricted_zone,generated,EVT-03C3C327,2026-03-17T02:00:51,Server Room,person_detected,True,1
+G-motion_empty_room-09,motion_empty_room,generated,EVT-0E52C5CD,2026-03-19T06:15:24,Server Room,motion,True,1
+G-normal_occupancy-05,normal_occupancy,generated,EVT-9BC5E8C1,2026-03-15T11:15:14,Server Room,occupancy,False,0
+G-loitering_restricted_zone-02,loitering_restricted_zone,generated,EVT-7843AE07,2026-03-12T14:00:52,Storage Room,prolonged_presence,True,1
+G-person_restricted_zone-09,person_restricted_zone,generated,EVT-623045B2,2026-03-19T01:15:04,Laboratory,person_detected,True,1
+G-motion_empty_room-08,motion_empty_room,generated,EVT-5279E594,2026-03-18T03:00:55,Laboratory,motion,True,1
+G-door_after_hours-02,door_after_hours,generated,EVT-B156E07F,2026-03-12T07:30:10,Laboratory,door_open,True,1
+G-multiple_suspicious-02,multiple_suspicious,generated,EVT-C86E749A,2026-03-12T05:45:07,Storage Room,person_detected,True,4
+G-multiple_suspicious-02,multiple_suspicious,generated,EVT-4F4FA9ED,2026-03-12T05:45:37,Laboratory,motion,True,4
+G-multiple_suspicious-02,multiple_suspicious,generated,EVT-F3AC04A5,2026-03-12T05:46:07,Server Room,door_open,True,4
+G-normal_motion-05,normal_motion,generated,EVT-C401226A,2026-03-15T14:00:22,Lobby,motion,False,0
+G-person_restricted_zone-06,person_restricted_zone,generated,EVT-931FF1B6,2026-03-16T03:30:14,Server Room,person_detected,True,1
+G-loitering_restricted_zone-06,loitering_restricted_zone,generated,EVT-EE4B4B25,2026-03-16T12:45:35,Storage Room,prolonged_presence,True,1
+G-normal_door_open-01,normal_door_open,generated,EVT-6EDA0BA1,2026-03-11T09:30:47,Lobby,door_open,False,0
+G-loitering_restricted_zone-00,loitering_restricted_zone,generated,EVT-48244C07,2026-03-10T06:45:56,Laboratory,prolonged_presence,True,1
+G-person_restricted_zone-03,person_restricted_zone,generated,EVT-618F23E0,2026-03-13T19:30:44,Storage Room,person_detected,True,1
+G-normal_occupancy-08,normal_occupancy,generated,EVT-1E9B5480,2026-03-18T08:15:48,Lobby,occupancy,False,0
+G-multiple_suspicious-07,multiple_suspicious,generated,EVT-34A7E652,2026-03-17T22:15:09,Laboratory,motion,True,4
+G-multiple_suspicious-07,multiple_suspicious,generated,EVT-6939887E,2026-03-17T22:15:39,Server Room,motion,True,4
+G-multiple_suspicious-07,multiple_suspicious,generated,EVT-4B23C18D,2026-03-17T22:16:09,Storage Room,motion,True,4
+G-normal_occupancy-09,normal_occupancy,generated,EVT-647EE755,2026-03-19T18:00:44,Lobby,occupancy,False,0
+G-normal_motion-00,normal_motion,generated,EVT-C662FAA9,2026-03-10T11:30:21,Server Room,motion,False,0
+G-door_after_hours-03,door_after_hours,generated,EVT-6BFD6813,2026-03-13T07:45:22,Laboratory,door_open,True,1
+G-door_after_hours-07,door_after_hours,generated,EVT-59AE0E5B,2026-03-17T04:30:38,Server Room,door_open,True,1
+G-motion_empty_room-03,motion_empty_room,generated,EVT-09B6E7D5,2026-03-13T23:30:36,Laboratory,motion,True,1
+G-multiple_suspicious-01,multiple_suspicious,generated,EVT-2FE1076D,2026-03-11T03:45:17,Server Room,motion,True,4
+G-multiple_suspicious-01,multiple_suspicious,generated,EVT-D8F71711,2026-03-11T03:45:47,Laboratory,door_open,True,4
+G-multiple_suspicious-01,multiple_suspicious,generated,EVT-212653D8,2026-03-11T03:46:17,Storage Room,motion,True,4
+G-motion_empty_room-02,motion_empty_room,generated,EVT-059095FC,2026-03-12T07:00:53,Laboratory,motion,True,1
+G-normal_door_open-07,normal_door_open,generated,EVT-355ED972,2026-03-17T14:00:27,Laboratory,door_open,False,0
+G-multiple_suspicious-05,multiple_suspicious,generated,EVT-ADD54F57,2026-03-15T23:00:17,Storage Room,door_open,True,4
+G-multiple_suspicious-05,multiple_suspicious,generated,EVT-DB9F2D25,2026-03-15T23:00:47,Server Room,motion,True,4
+G-multiple_suspicious-05,multiple_suspicious,generated,EVT-7E4D2FFE,2026-03-15T23:01:17,Laboratory,door_open,True,4
+G-normal_door_open-02,normal_door_open,generated,EVT-57D579A4,2026-03-12T13:15:15,Office,door_open,False,0
+G-normal_occupancy-06,normal_occupancy,generated,EVT-1239DC6E,2026-03-16T13:00:37,Server Room,occupancy,False,0
+G-motion_empty_room-06,motion_empty_room,generated,EVT-513CE679,2026-03-16T02:45:49,Laboratory,motion,True,1
+G-normal_motion-02,normal_motion,generated,EVT-9A739000,2026-03-12T09:30:48,Office,motion,False,0
+G-door_after_hours-00,door_after_hours,generated,EVT-C74E2CE4,2026-03-10T02:00:29,Laboratory,door_open,True,1
+G-normal_motion-04,normal_motion,generated,EVT-D1B463CB,2026-03-14T13:45:24,Lobby,motion,False,0
+G-normal_door_open-05,normal_door_open,generated,EVT-F67FF60C,2026-03-15T09:15:47,Storage Room,door_open,False,0
+G-normal_door_open-06,normal_door_open,generated,EVT-A8DDEDC9,2026-03-16T11:00:05,Laboratory,door_open,False,0
+G-multiple_suspicious-00,multiple_suspicious,generated,EVT-ADD927B5,2026-03-10T22:30:15,Server Room,door_open,True,4
+G-multiple_suspicious-00,multiple_suspicious,generated,EVT-0D001627,2026-03-10T22:30:45,Laboratory,motion,True,4
+G-multiple_suspicious-00,multiple_suspicious,generated,EVT-6673A6D3,2026-03-10T22:31:15,Storage Room,door_open,True,4
+G-loitering_restricted_zone-03,loitering_restricted_zone,generated,EVT-04AA86B3,2026-03-13T08:45:48,Server Room,prolonged_presence,True,1
+G-normal_door_open-09,normal_door_open,generated,EVT-08C1D068,2026-03-19T13:45:13,Lobby,door_open,False,0
+G-person_restricted_zone-02,person_restricted_zone,generated,EVT-095129F9,2026-03-12T01:30:59,Laboratory,person_detected,True,1
+G-normal_motion-01,normal_motion,generated,EVT-B11B5DD9,2026-03-11T13:30:09,Office,motion,False,0
+G-multiple_suspicious-06,multiple_suspicious,generated,EVT-6AD47665,2026-03-16T02:30:14,Server Room,person_detected,True,4
+G-multiple_suspicious-06,multiple_suspicious,generated,EVT-038276B9,2026-03-16T02:30:44,Laboratory,motion,True,4
+G-multiple_suspicious-06,multiple_suspicious,generated,EVT-49E8C415,2026-03-16T02:31:14,Storage Room,motion,True,4
+G-person_restricted_zone-08,person_restricted_zone,generated,EVT-67959481,2026-03-18T04:15:25,Laboratory,person_detected,True,1
+G-normal_occupancy-00,normal_occupancy,generated,EVT-F0889557,2026-03-10T10:30:32,Office,occupancy,False,0
+G-door_after_hours-08,door_after_hours,generated,EVT-99952205,2026-03-18T19:15:10,Storage Room,door_open,True,1
+G-normal_door_open-00,normal_door_open,generated,EVT-85CB9959,2026-03-10T17:00:07,Laboratory,door_open,False,0
+G-person_restricted_zone-01,person_restricted_zone,generated,EVT-B87A9B77,2026-03-11T00:00:24,Storage Room,person_detected,True,1
+G-loitering_restricted_zone-04,loitering_restricted_zone,generated,EVT-33A6F316,2026-03-14T20:00:49,Storage Room,prolonged_presence,True,1
+G-motion_empty_room-07,motion_empty_room,generated,EVT-555E6A99,2026-03-17T06:45:05,Laboratory,motion,True,1
+G-loitering_restricted_zone-05,loitering_restricted_zone,generated,EVT-8C0B2ABB,2026-03-15T16:00:08,Server Room,prolonged_presence,True,1
+G-loitering_restricted_zone-09,loitering_restricted_zone,generated,EVT-0978728E,2026-03-19T06:00:13,Storage Room,prolonged_presence,True,1
+G-normal_motion-06,normal_motion,generated,EVT-CAC8AB7C,2026-03-16T17:45:38,Office,motion,False,0
+G-motion_empty_room-04,motion_empty_room,generated,EVT-02347081,2026-03-14T00:30:45,Laboratory,motion,True,1
+G-door_after_hours-04,door_after_hours,generated,EVT-1A276C27,2026-03-14T21:30:42,Server Room,door_open,True,1
+G-door_after_hours-01,door_after_hours,generated,EVT-099B9751,2026-03-11T19:15:53,Storage Room,door_open,True,1
+G-door_after_hours-05,door_after_hours,generated,EVT-AA8A3BB2,2026-03-15T01:15:44,Laboratory,door_open,True,1
+G-normal_occupancy-02,normal_occupancy,generated,EVT-486D6F93,2026-03-12T12:00:12,Laboratory,occupancy,False,0
+G-loitering_restricted_zone-07,loitering_restricted_zone,generated,EVT-60AE9FCD,2026-03-17T21:00:16,Server Room,prolonged_presence,True,1
+G-multiple_suspicious-08,multiple_suspicious,generated,EVT-2404972A,2026-03-18T02:30:17,Server Room,motion,True,4
+G-multiple_suspicious-08,multiple_suspicious,generated,EVT-8A2B2B93,2026-03-18T02:30:47,Storage Room,person_detected,True,4
+G-multiple_suspicious-08,multiple_suspicious,generated,EVT-EB6B45A7,2026-03-18T02:31:17,Laboratory,motion,True,4
+G-multiple_suspicious-04,multiple_suspicious,generated,EVT-849B5F38,2026-03-14T06:00:19,Storage Room,door_open,True,4
+G-multiple_suspicious-04,multiple_suspicious,generated,EVT-C8C302DB,2026-03-14T06:00:49,Server Room,motion,True,4
+G-multiple_suspicious-04,multiple_suspicious,generated,EVT-303B0E72,2026-03-14T06:01:19,Laboratory,door_open,True,4
+G-normal_motion-09,normal_motion,generated,EVT-5DF396B7,2026-03-19T13:45:34,Server Room,motion,False,0
+G-normal_motion-07,normal_motion,generated,EVT-AE68A01C,2026-03-17T12:30:51,Office,motion,False,0
+G-loitering_restricted_zone-01,loitering_restricted_zone,generated,EVT-1C1FF627,2026-03-11T10:00:05,Server Room,prolonged_presence,True,1
+G-loitering_restricted_zone-08,loitering_restricted_zone,generated,EVT-A49EC320,2026-03-18T19:30:55,Storage Room,prolonged_presence,True,1
+G-normal_door_open-04,normal_door_open,generated,EVT-0B64083A,2026-03-14T13:00:06,Storage Room,door_open,False,0
+G-person_restricted_zone-04,person_restricted_zone,generated,EVT-87F32978,2026-03-14T06:00:14,Storage Room,person_detected,True,1
+G-normal_occupancy-01,normal_occupancy,generated,EVT-8730C721,2026-03-11T14:45:01,Laboratory,occupancy,False,0
+G-multiple_suspicious-09,multiple_suspicious,generated,EVT-811B1E58,2026-03-19T01:45:11,Laboratory,door_open,True,4
+G-multiple_suspicious-09,multiple_suspicious,generated,EVT-86DF82EC,2026-03-19T01:45:41,Storage Room,person_detected,True,4
+G-multiple_suspicious-09,multiple_suspicious,generated,EVT-6D7A812D,2026-03-19T01:46:11,Server Room,person_detected,True,4
+G-normal_occupancy-03,normal_occupancy,generated,EVT-3509B1ED,2026-03-13T11:45:41,Storage Room,occupancy,False,0
+G-normal_occupancy-07,normal_occupancy,generated,EVT-22374D38,2026-03-17T13:30:51,Office,occupancy,False,0
+G-normal_motion-08,normal_motion,generated,EVT-22E20579,2026-03-18T10:45:46,Lobby,motion,False,0
+G-motion_empty_room-01,motion_empty_room,generated,EVT-D379C772,2026-03-11T00:30:05,Storage Room,motion,True,1
+G-motion_empty_room-05,motion_empty_room,generated,EVT-273AE003,2026-03-15T04:15:02,Server Room,motion,True,1
+G-normal_door_open-03,normal_door_open,generated,EVT-DF79C5C2,2026-03-13T10:00:08,Office,door_open,False,0
+G-normal_occupancy-04,normal_occupancy,generated,EVT-33A0621D,2026-03-14T10:45:34,Storage Room,occupancy,False,0

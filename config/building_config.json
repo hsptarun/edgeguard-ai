@@ -1,0 +1,110 @@
+{
+  "building_name": "Demo Smart Building",
+  "open_time": "08:00",
+  "close_time": "20:00",
+  "force_closed": false,
+  "rules": {
+    "cooldown_seconds": 60,
+    "multi_event_threshold": 3,
+    "multi_event_window_seconds": 300,
+    "persistence_frames": 5,
+    "min_gap_seconds": 10.0
+  },
+  "rooms": [
+    {
+      "name": "Lobby",
+      "restricted": false,
+      "permitted_hours": [
+        [
+          "06:00",
+          "22:00"
+        ]
+      ],
+      "door_status": "closed",
+      "motion_sensor_enabled": true,
+      "motion_detected": false,
+      "zone": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "Office",
+      "restricted": false,
+      "permitted_hours": [
+        [
+          "08:00",
+          "20:00"
+        ]
+      ],
+      "door_status": "closed",
+      "motion_sensor_enabled": true,
+      "motion_detected": false,
+      "zone": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "Server Room",
+      "restricted": true,
+      "permitted_hours": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "door_status": "closed",
+      "motion_sensor_enabled": true,
+      "motion_detected": false,
+      "zone": [
+        0.3,
+        0.2,
+        0.9,
+        1.0
+      ]
+    },
+    {
+      "name": "Laboratory",
+      "restricted": true,
+      "permitted_hours": [
+        [
+          "09:00",
+          "19:00"
+        ]
+      ],
+      "door_status": "closed",
+      "motion_sensor_enabled": true,
+      "motion_detected": false,
+      "zone": [
+        0.3,
+        0.2,
+        0.9,
+        1.0
+      ]
+    },
+    {
+      "name": "Storage Room",
+      "restricted": true,
+      "permitted_hours": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "door_status": "closed",
+      "motion_sensor_enabled": true,
+      "motion_detected": false,
+      "zone": [
+        0.3,
+        0.2,
+        0.9,
+        1.0
+      ]
+    }
+  ]
+}

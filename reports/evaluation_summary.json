@@ -1,0 +1,18 @@
+{
+  "seed": 42,
+  "classifier": {
+    "tp": 63,
+    "fp": 0,
+    "tn": 43,
+    "fn": 0,
+    "n": 106,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "false_positive_rate": 0.0,
+    "alert_count_match_rate": 1.0,
+    "hand_written_n": 26,
+    "hand_written_rule_sequence_match_rate": 1.0
+  }
+}
